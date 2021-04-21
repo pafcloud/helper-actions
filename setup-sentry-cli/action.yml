@@ -1,0 +1,26 @@
+name: setup-sentry-cli
+description: Installs sentry-cli (linux x64)
+
+inputs:
+  version:
+    description: Version, e.g. 1.64.0
+    required: true
+  checksum:
+    description: Expected sha256 checksum
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - id: setup
+      shell: bash
+      run: |
+        download_url="https://github.com/getsentry/sentry-cli/releases/download/${{ inputs.version }}/sentry-cli-Linux-x86_64"
+        tmp_bin_dir="$(mktemp -d $RUNNER_TEMP/XXXXXXXXXX)"
+        sentry_cli_bin="$tmp_bin_dir/sentry-cli"
+
+        curl -fsSL "$download_url" -o "$sentry_cli_bin"
+        echo "${{ inputs.checksum }} $sentry_cli_bin" | sha256sum -c
+        chmod +x "$sentry_cli_bin"
+
+        echo "$tmp_bin_dir" >> $GITHUB_PATH
