@@ -1,0 +1,14 @@
+name: cleanup-workspace
+description: >
+  Cleanup workspace directory.
+
+  When actions that use sudo/suid binaries/docker/.. are used, there can be
+  root (or any uid/gid) owned files in worskapce from previous jobs. That can
+  cause checkout and other actions to fail when trying to delete or modify
+  files.
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: sudo rm -fr ${GITHUB_WORKSPACE}
