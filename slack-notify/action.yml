@@ -1,0 +1,19 @@
+name: slack-notify
+description: Sends a slack message via webhook
+
+inputs:
+  webhook-url:
+    description: Slack webhook URL (sensitive, pass this via GitHub secret, see https://api.slack.com/messaging/webhooks)
+    required: true
+  message-text:
+    description: Message text (free-form 'mrkdwn' string, see https://api.slack.com/reference/surfaces/formatting#basics)
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - run: |
+        curl -X POST -H 'Content-Type: application/json' --data '{ "text": ${{ toJSON(inputs.message-text) }} }' "$WEBHOOK_URL"
+      shell: bash
+      env:
+        WEBHOOK_URL: ${{ inputs.webhook-url }}
