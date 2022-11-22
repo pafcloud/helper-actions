@@ -22,7 +22,7 @@ runs:
         tmp_bin_dir="$(mktemp -d $RUNNER_TEMP/XXXXXXXXXX)"
         rclone_bin="$tmp_bin_dir/rclone"
         mv rclone-v${RCLONE_VERSION}-linux-amd64/rclone "$rclone_bin"
-        rm -fr MD5SUMS rclone-v${RCLONE_VERSION}-linux-amd64
+        rm -fr MD5SUMS rclone-v${RCLONE_VERSION}-linux-amd64.zip rclone-v${RCLONE_VERSION}-linux-amd64
         chmod +x "$rclone_bin"
         echo "$tmp_bin_dir" >> $GITHUB_PATH
       env:
