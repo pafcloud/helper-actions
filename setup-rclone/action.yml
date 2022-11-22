@@ -12,19 +12,19 @@ runs:
     - id: setup
       shell: bash
       run: |
-        download_base_url="https://github.com/rclone/rclone/releases/download/v${RCLONE_VERSION}"
-        zip_download_url="${download_base_url}/rclone-v${RCLONE_VERSION}-linux-amd64.zip"
+        download_base_url="https://github.com/rclone/rclone/releases/download/v${VERSION}"
+        zip_download_url="${download_base_url}/rclone-v${VERSION}-linux-amd64.zip"
         md5sums_download_url="${download_base_url}/MD5SUMS"
         curl -fsSLOJ --retry 3 "$zip_download_url"
         curl -fsSLOJ --retry 3 "$md5sums_download_url"
         md5sum -c --ignore-missing 2>/dev/null MD5SUMS
-        unzip rclone-v${RCLONE_VERSION}-linux-amd64.zip
+        unzip rclone-v${VERSION}-linux-amd64.zip
         tmp_bin_dir="$(mktemp -d $RUNNER_TEMP/XXXXXXXXXX)"
         rclone_bin="$tmp_bin_dir/rclone"
-        mv rclone-v${RCLONE_VERSION}-linux-amd64/rclone "$rclone_bin"
-        rm -fr MD5SUMS rclone-v${RCLONE_VERSION}-linux-amd64.zip rclone-v${RCLONE_VERSION}-linux-amd64
+        mv rclone-v${VERSION}-linux-amd64/rclone "$rclone_bin"
+        rm -fr MD5SUMS rclone-v${VERSION}-linux-amd64.zip rclone-v${VERSION}-linux-amd64
         chmod +x "$rclone_bin"
         $rclone_bin config touch
         echo "$tmp_bin_dir" >> $GITHUB_PATH
       env:
-        RCLONE_VERSION: ${{ inputs.version }}
+        VERSION: ${{ inputs.version }}
