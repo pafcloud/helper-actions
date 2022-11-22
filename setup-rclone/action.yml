@@ -1,5 +1,5 @@
 name: setup-rclone
-description: Installs rclone (linux x64)
+description: Installs rclone (linux amd64)
 
 inputs:
   version:
