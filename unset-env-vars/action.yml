@@ -1,0 +1,15 @@
+name: unset-env-vars
+description: Unset given environment variables
+
+inputs:
+  env-vars:
+    description: Space separated environment variable names to unset, ex. "AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: for e in $ENV_VARS; do echo "$e=" >> $GITHUB_ENV; done
+      env:
+        ENV_VARS: ${{ inputs.env-vars }}
