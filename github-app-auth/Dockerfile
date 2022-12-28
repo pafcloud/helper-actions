@@ -1,6 +1,5 @@
-FROM python:3
+FROM node:18-alpine
 
-COPY jwt.py /usr/src/app
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
