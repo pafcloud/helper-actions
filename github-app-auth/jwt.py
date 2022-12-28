@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 iat = datetime.utcnow()
 exp = iat + timedelta(seconds = 60)
 
-token=jwt.encode(
+token = jwt.encode(
     payload={
         'iss': os.environ['APP_ID'],
         'iat': int(iat.timestamp()),
