@@ -1,0 +1,21 @@
+name: github-app-auth
+description: Authenticates as a GitHub app and outputs access token
+
+inputs:
+  app-id:
+    description: GitHub app ID, e.g. '123456'
+    required: true
+  private-key:
+    description: GitHub app private key, PEM-formatted
+    required: true
+
+outputs:
+  token:
+    description: Access token that can be used to authenticate to GitHub APIs
+
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    APP_ID: ${{ inputs.app-id }}
+    PRIVATE_KEY_PEM: ${{ inputs.private-key }}
