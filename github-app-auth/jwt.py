@@ -10,7 +10,7 @@ exp = iat + timedelta(seconds = 60)
 
 token = jwt.encode(
     payload={
-        'iss': ,
+        'iss': app_id,
         'iat': int(iat.timestamp()),
         'exp': int(exp.timestamp())
     },
