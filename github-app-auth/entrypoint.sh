@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh -l
 
 token="$(node token.js)"
 
