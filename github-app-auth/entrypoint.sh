@@ -1,10 +1,9 @@
 #!/bin/bash -e
 
-pip install pyjwt
+npm i octokit
 
-jwt="$(python /usr/src/app/jwt.py)"
+token="$(node token.js)"
 
-access_token=""
-# TODO: https://docs.github.com/en/developers/apps/building-github-apps/authenticating-with-github-apps#authenticating-as-an-installation
+echo "::add-mask::$token"
 
-echo "token=$access_token" >> $GITHUB_OUTPUT
+echo "token=$token" >> $GITHUB_OUTPUT
