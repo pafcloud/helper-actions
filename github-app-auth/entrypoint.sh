@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-token="$(node token.js)"
+token="$(node /usr/app/token.js)"
 
 echo "::add-mask::$token"
 
