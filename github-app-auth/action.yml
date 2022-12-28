@@ -3,10 +3,13 @@ description: Authenticates as a GitHub app and outputs access token
 
 inputs:
   app-id:
-    description: GitHub app ID, e.g. '123456'
+    description: GitHub app ID, e.g. 123456
     required: true
   private-key:
-    description: GitHub app private key, PEM-formatted
+    description: GitHub app private key (PEM)
+    required: true
+  installation-id:
+    description: GitHub app installation ID
     required: true
 
 outputs:
@@ -18,4 +21,5 @@ runs:
   image: Dockerfile
   env:
     APP_ID: ${{ inputs.app-id }}
-    PRIVATE_KEY_PEM: ${{ inputs.private-key }}
+    PRIVATE_KEY: ${{ inputs.private-key }}
+    INSTALLATION_ID: ${{ inputs.installation-id }}
