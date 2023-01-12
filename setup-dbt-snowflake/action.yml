@@ -19,5 +19,6 @@ runs:
     
     - name: Install dbt-snowflake
       run: pip install dbt-snowflake==$VERSION
+      shell: bash
       env:
         VERSION: ${{ inputs.version }}
