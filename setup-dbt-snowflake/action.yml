@@ -21,4 +21,3 @@ runs:
         run: pip install dbt-snowflake==$VERSION
         env:
           VERSION: ${{ inputs.version }}
- 
