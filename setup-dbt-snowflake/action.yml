@@ -3,7 +3,7 @@ description: Installs dbt-snowflake
 
 inputs:
   version:
-    description: Version, e.g. '1.3.1'
+    description: Version, e.g. '1.3.0'
     required: true
   python-version:
     description: Python version, e.g. '3.9'
