@@ -1,0 +1,33 @@
+name: send-email-ses
+description: >
+  Sends email using Amazon SES. Requires AWS credentials and a verified SES domain for sender address
+
+inputs:
+  from:
+    description: Sender email address, e.g. 'noreply@example.com', must match a verified SES identity
+    required: true
+  to:
+    description: Recipient email addresses, e.g. 'foo@example.com bar@example.com'
+    required: true
+  subject:
+    description: Message subject, e.g. 'Wow message from GitHub actions'
+    required: true
+  body:
+    description: Message body (HTML), e.g. 'Such <br>newlines'
+    required: true
+  aws-region:
+    description: AWS region, e.g. 'eu-west-1'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    
+    - run: aws ses send-email --from "$FROM" --to "$TO" --subject "$SUBJECT" --html "$BODY"
+      shell: bash
+      env:
+        FROM: ${{ inputs.from }}
+        TO: ${{ inputs.to }}
+        SUBJECT: ${{ inputs.subject }}
+        BODY: ${{ inputs.body }}
+        AWS_DEFAULT_REGION: ${{ inputs.aws-region }}
