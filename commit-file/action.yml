@@ -1,0 +1,33 @@
+name: commit-file
+description: >
+  Commits a single file using the GitHub content API
+
+inputs:
+  file-path:
+    description: File path, e.g. 'path/to/my/file.txt'
+    required: true
+  git-branch:
+    description: Git branch, e.g. 'feature/my-superb-code'
+    required: true
+  commit-message:
+    description: Git commit message, e.g. 'Wow, such changes'
+    required: true
+  github-token:
+    description: GitHub token to authenticate with
+    required: true
+    
+runs:
+  using: composite
+  steps:
+    - run: |
+        gh api --method PUT /repos/:owner/:repo/contents/$FILE_PATH \
+          --field branch="$GIT_BRANCH" \
+          --field message="$COMMIT_MESSAGE" \
+          --field content=@<(base64 $FILE_PATH) \
+          --field sha="$(git rev-parse $GIT_BRANCH:$FILE_PATH)"
+      env:
+        FILE_PATH: ${{ inputs.file-path }}
+        GIT_BRANCH: ${{ inputs.git-branch }}
+        COMMIT_MESSAGE: ${{ inputs-commit-message }}
+        GH_TOKEN: ${{ inputs.github-token }}
+ 
