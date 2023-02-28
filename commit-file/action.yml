@@ -30,4 +30,3 @@ runs:
         GIT_BRANCH: ${{ inputs.git-branch }}
         COMMIT_MESSAGE: ${{ inputs-commit-message }}
         GH_TOKEN: ${{ inputs.github-token }}
- 
