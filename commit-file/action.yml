@@ -1,6 +1,6 @@
 name: commit-file
 description: >
-  Commits a single file using the GitHub content API
+  Commits a single file using the GitHub content API. Must be run in a local Git repository
 
 inputs:
   file-path:
