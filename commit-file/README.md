@@ -1,8 +1,8 @@
 # Usage
 
 ```yml
-- name: Commit file
-  uses: pafcloud/helper-actions/commit-file@<release>
+- name: Commit single file
+  uses: pafcloud/helper-actions/gh-commit-file@<release>
   with:
     repo: pafcloud/foo
     branch: such/feature
