@@ -1,5 +1,7 @@
 # Usage
 
+:information_source: Requires the `contents: write` permission.
+
 ```yml
 - name: Commit single file
   uses: pafcloud/helper-actions/gh-commit-file@<release>
