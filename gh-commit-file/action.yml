@@ -5,7 +5,7 @@ description: >
 
 inputs:
   repo:
-    description: GitHub repository, e.g. 'pafcloud/foo'
+    description: GitHub repository, e.g. 'my-org/foo'
     required: true
   branch:
     description: Branch to commit to, e.g. 'such/feature'
@@ -14,7 +14,7 @@ inputs:
     description: Relative file path, e.g. 'path/to/my/file.txt'
     required: true
   message:
-    description: Commit message, e.g. 'fix: update file to match'
+    description: Commit message, e.g. 'Updating file.txt to match'
     required: true
   github-token:
     description: GitHub token to authenticate with (e.g. PAT)
