@@ -1,0 +1,50 @@
+name: gh-commit-file
+description: >
+  Commits a single file using the GitHub content API.
+  Must be run in a local Git repository. Uses gh CLI.
+
+inputs:
+  repo:
+    description: GitHub repository, e.g. 'pafcloud/foo'
+    required: true
+  branch:
+    description: Branch to commit to, e.g. 'such/feature'
+    required: true
+  path:
+    description: Relative file path, e.g. 'path/to/my/file.txt'
+    required: true
+  message:
+    description: Commit message, e.g. 'Wow, such changes'
+    required: true
+  github-token:
+    description: GitHub token to authenticate with
+    required: true
+  working-dir:
+    description: Working directory. Defaults to '.'
+    required: false
+    default: .
+
+runs:
+  using: composite
+  steps:
+    - run: |
+        sha=""
+        
+        if [ ! -z "$(git ls-files $FILE_PATH)" ]; then
+          # Updating file
+          sha="$(git rev-parse $BRANCH:$FILE_PATH)"
+        fi
+          
+        gh api --method PUT /repos/$REPO/contents/$FILE_PATH \
+          --field branch="$BRANCH" \
+          --field message="$MESSAGE" \
+          --field content=@<(base64 $FILE_PATH) \
+          --field sha="$sha"
+      working-directory: ${{ inputs.working-dir }}
+      env:
+        REPO: ${{ inputs.repo }}
+        FILE_PATH: ${{ inputs.path }}
+        BRANCH: ${{ inputs.git-branch }}
+        MESSAGE: ${{ inputs-commit-message }}
+        GH_TOKEN: ${{ inputs.github-token }}
+      shell: bash
