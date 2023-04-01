@@ -43,8 +43,8 @@ runs:
       working-directory: ${{ inputs.working-dir }}
       env:
         REPO: ${{ inputs.repo }}
+        BRANCH: ${{ inputs.branch }}
         FILE_PATH: ${{ inputs.path }}
-        BRANCH: ${{ inputs.git-branch }}
-        MESSAGE: ${{ inputs-commit-message }}
+        MESSAGE: ${{ inputs.message }}
         GH_TOKEN: ${{ inputs.github-token }}
       shell: bash
