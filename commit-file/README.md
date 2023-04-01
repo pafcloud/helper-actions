@@ -10,5 +10,5 @@
     branch: such/feature
     path: path/to/file.txt
     message: Updating a file
-    github-token: <token>
+    github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
