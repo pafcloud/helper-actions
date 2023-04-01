@@ -14,10 +14,10 @@ inputs:
     description: Relative file path, e.g. 'path/to/my/file.txt'
     required: true
   message:
-    description: Commit message, e.g. 'Wow, such changes'
+    description: Commit message, e.g. 'fix: update file to match'
     required: true
   github-token:
-    description: GitHub token to authenticate with
+    description: GitHub token to authenticate with (e.g. PAT)
     required: true
   working-dir:
     description: Working directory. Defaults to '.'
