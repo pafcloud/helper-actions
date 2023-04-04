@@ -25,4 +25,3 @@ runs:
         ISSUER: ${{ inputs.certificate-oidc-issuer }}
         IDENTITY: ${{ inputs.certificate-identity }}
       shell: bash
- 
