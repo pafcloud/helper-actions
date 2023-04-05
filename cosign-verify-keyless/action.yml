@@ -1,0 +1,27 @@
+name: cosign-verify-keyless
+description: Verifies container images using cosign (keyless). Errors on failed verification.
+
+inputs:
+  images:
+    description: Images to verify, e.g. 'gcr.io/distroless/java17-debian11'
+    required: true
+  certificate-oidc-issuer:
+    description: Expected certificate OIDC issuer, e.g. 'https://accounts.google.com'
+    required: true
+  certificate-identity:
+    description: Expected certificate identity, e.g. 'keyless@distroless.iam.gserviceaccount.com'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install cosign
+      uses: sigstore/cosign-installer@v3
+
+    - name: Run cosign verify
+      run: cosign verify $IMAGES --certificate-oidc-issuer $ISSUER --certificate-identity $IDENTITY
+      env:
+        IMAGES: ${{ inputs.images }}
+        ISSUER: ${{ inputs.certificate-oidc-issuer }}
+        IDENTITY: ${{ inputs.certificate-identity }}
+      shell: bash
