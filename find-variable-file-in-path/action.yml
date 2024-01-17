@@ -46,7 +46,7 @@ runs:
         echo $file_contents
 
         if [ ! -z "$file_contents" ]; then
-          echo "file-contents=$file_contents" >> $GITHUB_OUTPUT
+          echo "file_contents=$file_contents" >> $GITHUB_OUTPUT
         else
-          echo "file-contents=" >> $GITHUB_OUTPUT
+          echo "file_contents=" >> $GITHUB_OUTPUT
         fi
