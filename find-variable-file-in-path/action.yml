@@ -5,6 +5,9 @@ inputs:
   filename:
     description: Filename of file holding the variable
     required: true
+  directory:
+    description: Directory from where to start seraching upwards
+    required: true
 
 outputs:
   file-contents:
@@ -17,7 +20,7 @@ runs:
       shell: bash
       run: |
 
-        search_dir=$(pwd)
+        search_dir="${{ inputs.directory }}"
         echo $search_dir
         filename="${{ inputs.filename }}"
 
