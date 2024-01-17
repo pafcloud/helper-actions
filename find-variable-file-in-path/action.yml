@@ -1,0 +1,45 @@
+name: find-variable-file-in-path
+description: Finds a variable in a file in the path (recursivly up) staring from current dir
+
+inputs:
+  filename:
+    description: Filename of file holding the variable
+    required: true
+
+outputs:
+  file-content:
+    value: ${{ steps.findfile.outputs.pr-state }}
+
+runs:
+  using: composite
+  steps:
+    - id: findfile
+      shell: bash
+      run: |
+
+        search_dir=$(pwd)
+        filename = ${{ inputs.filename }}
+
+        # Initialize empty variable to store file contents
+        file_contents=""
+
+        # Check the current working directory for the file
+        if [ -f "$search_dir/$filename" ]; then
+          file_contents=$(cat "$search_dir/$filename")
+        else
+          # If the file is not found in the current directory, search for it recursively in parent directories
+          while [ "$search_dir" != "/" ]; do
+            if [ -f "$search_dir/$filename" ]; then
+              file_contents=$(cat "$search_dir/$filename")
+              break
+            fi
+            search_dir=$(dirname "$search_dir")
+          done
+        fi
+
+        # Check if the file was found
+        if [ ! -z "$file_contents" ]; then
+          echo "cont=$file_contents" >> $GITHUB_OUTPUT
+        else
+          echo "" >> $GITHUB_OUTPUT
+        fi
