@@ -10,7 +10,7 @@ inputs:
     required: true
 
 outputs:
-  file-contents:
+  file_contents:
     value: ${{ steps.findfile.outputs.file_contents }}
 
 runs:
