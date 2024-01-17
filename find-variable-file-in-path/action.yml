@@ -18,7 +18,7 @@ runs:
       run: |
 
         search_dir=$(pwd)
-        filename = ${{ inputs.filename }}
+        filename="${{ inputs.filename }}"
 
         # Initialize empty variable to store file contents
         file_contents=""
