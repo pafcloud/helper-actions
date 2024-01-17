@@ -7,8 +7,8 @@ inputs:
     required: true
 
 outputs:
-  file-content:
-    value: ${{ steps.findfile.outputs.pr-state }}
+  file-contents:
+    value: ${{ steps.findfile.outputs.file_contents }}
 
 runs:
   using: composite
@@ -39,7 +39,7 @@ runs:
 
         # Check if the file was found
         if [ ! -z "$file_contents" ]; then
-          echo "cont=$file_contents" >> $GITHUB_OUTPUT
+          echo "file-contents=$file_contents" >> $GITHUB_OUTPUT
         else
-          echo "" >> $GITHUB_OUTPUT
+          echo "file-contents=" >> $GITHUB_OUTPUT
         fi
