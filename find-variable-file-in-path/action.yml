@@ -18,6 +18,7 @@ runs:
       run: |
 
         search_dir=$(pwd)
+        echo $search_dir
         filename="${{ inputs.filename }}"
 
         # Initialize empty variable to store file contents
@@ -38,6 +39,9 @@ runs:
         fi
 
         # Check if the file was found
+        echo "file-contents"
+        echo $file_contents
+
         if [ ! -z "$file_contents" ]; then
           echo "file-contents=$file_contents" >> $GITHUB_OUTPUT
         else
