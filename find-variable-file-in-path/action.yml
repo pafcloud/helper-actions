@@ -42,17 +42,13 @@ runs:
         fi
 
         # Check if the file was found
-        echo "file_contents=ABBB" >> $GITHUB_OUTPUT
 
         echo "file-contents2"
         echo $file_contents
-        cat $GITHUB_OUTPUT
-        echo "file_contents=ABBB" >> $GITHUB_OUTPUT
-        cat $GITHUB_OUTPUT
 
-#        if [ ! -z "$file_contents" ]; then
-#          echo "::set-output file_contents=$file_contents" >> $GITHUB_OUTPUT
-#        else
-#          echo "::set-output file_contents=" >> $GITHUB_OUTPUT
-#        fi
-#        echo $GITHUB_OUTPUT
+        if [ ! -z "$file_contents" ]; then
+          echo "::set-output file_contents=$file_contents" >> $GITHUB_OUTPUT
+        else
+          echo "::set-output file_contents=" >> $GITHUB_OUTPUT
+        fi
+        cat $GITHUB_OUTPUT
