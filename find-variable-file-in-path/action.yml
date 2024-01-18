@@ -44,6 +44,9 @@ runs:
         # Check if the file was found
         echo "file-contents"
         echo $file_contents
+        echo $GITHUB_OUTPUT
+        echo "::set-output file_contents=ABBB" >> $GITHUB_OUTPUT
+        echo $GITHUB_OUTPUT
 
         if [ ! -z "$file_contents" ]; then
           echo "::set-output file_contents=$file_contents" >> $GITHUB_OUTPUT
