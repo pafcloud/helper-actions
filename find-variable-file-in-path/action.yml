@@ -47,8 +47,8 @@ runs:
         echo $file_contents
 
         if [ ! -z "$file_contents" ]; then
-          echo "::set-output file_contents=$file_contents" >> $GITHUB_OUTPUT
+          echo "file_contents=$file_contents" >> $GITHUB_OUTPUT
         else
-          echo "::set-output file_contents=" >> $GITHUB_OUTPUT
+          echo "file_contents=" >> $GITHUB_OUTPUT
         fi
         cat $GITHUB_OUTPUT
