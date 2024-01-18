@@ -9,9 +9,9 @@ inputs:
     description: Directory from where to start seraching upwards
     required: true
 
-outputs:
-  file_contents:
-    value: ${{ steps.findfile.outputs.file_contents }}
+#outputs:
+#  file_contents:
+#    value: ${{ steps.findfile.outputs.file_contents }}
 
 runs:
   using: composite
@@ -45,12 +45,12 @@ runs:
         echo "file-contents"
         echo $file_contents
         echo $GITHUB_OUTPUT
-        echo "::set-output file_contents=ABBB" >> $GITHUB_OUTPUT
+        echo "file_contents=ABBB" >> $GITHUB_OUTPUT
         echo $GITHUB_OUTPUT
 
-        if [ ! -z "$file_contents" ]; then
-          echo "::set-output file_contents=$file_contents" >> $GITHUB_OUTPUT
-        else
-          echo "::set-output file_contents=" >> $GITHUB_OUTPUT
-        fi
-        echo $GITHUB_OUTPUT
+#        if [ ! -z "$file_contents" ]; then
+#          echo "::set-output file_contents=$file_contents" >> $GITHUB_OUTPUT
+#        else
+#          echo "::set-output file_contents=" >> $GITHUB_OUTPUT
+#        fi
+#        echo $GITHUB_OUTPUT
