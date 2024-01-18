@@ -50,3 +50,4 @@ runs:
         else
           echo "::set-output file_contents=" >> $GITHUB_OUTPUT
         fi
+        echo $GITHUB_OUTPUT
