@@ -9,9 +9,9 @@ inputs:
     description: Directory from where to start seraching upwards
     required: true
 
-#outputs:
-#  file_contents:
-#    value: ${{ steps.findfile.outputs.file_contents }}
+outputs:
+  file_contents:
+    value: ${{ steps.findfile.outputs.file_contents }}
 
 runs:
   using: composite
