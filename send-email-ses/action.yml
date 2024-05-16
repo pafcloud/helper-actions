@@ -23,7 +23,7 @@ runs:
   using: composite
   steps:
     
-    - run: aws ses send-email --from "$FROM" --to "$TO" --subject "$SUBJECT" --html "$BODY"
+    - run: aws ses send-email --from "$FROM" --to $TO --subject "$SUBJECT" --html "$BODY"
       shell: bash
       env:
         FROM: ${{ inputs.from }}
